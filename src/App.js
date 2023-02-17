@@ -6,7 +6,8 @@ import api from './services/api';
 
 function App() {
 
-  const [input, setInput] = useState ('')
+  const [input, setInput] = useState ('');
+  const [cep, setCep] = useState({});
 
 
   async function handleSearch () {
@@ -19,7 +20,8 @@ function App() {
     //o que vc deseja fazer
     try{
       const response = await api.get(`${input}/json`);
-      console.log(response.data)
+      setCep(response.data)
+      setInput("")
 
     }catch{
       alert("Ops! Erro ao buscar")
@@ -35,7 +37,7 @@ function App() {
       <div className="containerInput">
         <input 
           type="text"
-          placeholder="Digite seu CEP..."
+          placeholder="Digite o CEP desejado"
           value={input}
           onChange={(e) => setInput(e.target.value) }
         />
@@ -45,15 +47,21 @@ function App() {
         </button>
       </div>
 
-      <main className="main">
-        <h2>CEP: 27288145</h2>
 
-        <span>Logradouro</span>
-        <span>complemento</span>
-        <span>cidade</span>
-        <span>Estado</span>
 
-      </main>
+      {Object.keys(cep).length > 0 && (
+
+        <main className="main">
+          <h2>CEP: {cep.cep}</h2>
+
+          <span>Logradouro: {cep.logradouro}</span>
+          <span>Cidade/Estado:{cep.localidade} - {cep.uf}</span>
+          <span>Bairro: {cep.bairro}</span>
+          <span>DDD: {cep.ddd}</span>
+
+        </main>
+        
+      )}
       
     </div>
       
