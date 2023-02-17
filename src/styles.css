@@ -39,6 +39,7 @@
     color: #fff;
     outline: none;
     margin-right: 0.5rem;
+
 }
 
 .containerInput input::placeholder {
@@ -65,7 +66,8 @@
     justify-content: center;
     align-items: center;
     background-color: #fff;
-    width: 31.25rem;
+    width: 80%;
+    min-height: 15.625rem;
     border-radius: 0.5rem;
 }
 
@@ -78,9 +80,4 @@
 .main span {
     margin-bottom: 1rem;
     font-weight: bold;
-}
-
-
-@media (min-width: 400px){
-
 }
